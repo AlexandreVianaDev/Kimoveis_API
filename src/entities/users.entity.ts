@@ -7,7 +7,7 @@ import {
   DeleteDateColumn,
   OneToMany,
 } from "typeorm";
-import { Schedule } from ".";
+import Schedule from "./schedules.entity";
 
 @Entity("users")
 class User {
@@ -36,7 +36,7 @@ class User {
   deletedAt: Date | string;
 
   @OneToMany(() => Schedule, (schedule) => schedule.user)
-  schedule: Schedule;
+  schedule: Schedule[];
 }
 
 export default User;

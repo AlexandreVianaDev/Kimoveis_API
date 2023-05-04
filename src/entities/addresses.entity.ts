@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
-import { RealEstate } from ".";
+import RealEstate from "./realEstate.entity";
 
 @Entity("addresses")
 class Address {
