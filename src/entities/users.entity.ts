@@ -6,8 +6,10 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   OneToMany,
+  BeforeInsert,
 } from "typeorm";
 import Schedule from "./schedules.entity";
+import { hash } from "bcryptjs";
 
 @Entity("users")
 class User {
@@ -24,7 +26,7 @@ class User {
   admin: boolean | undefined | null;
 
   @Column({ type: "varchar", length: 120 })
-  password: number;
+  password: string;
 
   @CreateDateColumn({ type: "date" })
   createdAt: Date | string;
@@ -37,6 +39,11 @@ class User {
 
   @OneToMany(() => Schedule, (schedule) => schedule.user)
   schedule: Schedule[];
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await hash(this.password, 10);
+  }
 }
 
 export default User;
