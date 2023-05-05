@@ -23,7 +23,7 @@ export const ensureUserIdExists = async (
     throw new AppError("User not found", 404);
   }
 
-  res.locals.id = idParams;
+  res.locals.userId = idParams;
 
   return next();
 };

@@ -20,7 +20,7 @@ export const ensureTokenIsValid = async (
       throw new AppError(error.message, 401);
     }
 
-    res.locals.id = parseInt(decoded.sub);
+    res.locals.tokenId = parseInt(decoded.sub);
 
     res.locals.admin = decoded.admin;
   });
