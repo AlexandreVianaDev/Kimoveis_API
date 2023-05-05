@@ -1,14 +1,16 @@
 import { z } from "zod";
 
+export const dateSchema = z.union([z.string(), z.date()]);
+
 export const userSchema = z.object({
   id: z.number().int().positive(),
   name: z.string().max(45),
   email: z.string().max(45).email(),
   password: z.string().max(120),
-  admin: z.boolean(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  deletedAt: z.string().nullish(),
+  admin: z.boolean().nullish(),
+  createdAt: dateSchema,
+  updatedAt: dateSchema,
+  deletedAt: dateSchema.nullish(),
 });
 
 export const userWithoutPasswordSchema = userSchema.omit({
