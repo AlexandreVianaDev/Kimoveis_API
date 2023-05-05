@@ -10,15 +10,12 @@ import {
 import { ensureAddressNotExists } from "../middlewares/ensureAddressNotExists.middleware";
 import { realEstateCreateSchema } from "../schemas/realEstate.schemas";
 
-export const realEstatesRoutes: Router = Router();
+export const schedulesRoutes: Router = Router();
 
-realEstatesRoutes.post(
+schedulesRoutes.post(
   "",
   ensureTokenIsValid,
-  ensureUserIsAdmin,
-  validateBody(realEstateCreateSchema),
-  ensureAddressNotExists,
-  createRealEstateController
+//   validateBody(realEstateCreateSchema),
 );
 
-realEstatesRoutes.get("", getRealEstatesController);
+schedulesRoutes.get("/realEstate/:id", ensureTokenIsValid, ensureUserIsAdmin, getRealEstatesController);

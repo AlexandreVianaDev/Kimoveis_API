@@ -9,7 +9,7 @@ import { userCreateSchema, userUpdateBodySchema } from "../schemas/users.schemas
 import { ensureEmailNotExists } from "../middlewares/ensureEmailNotExists.middleware";
 import { ensureTokenIsValid } from "../middlewares/ensureTokenIsValid.middleware";
 import { ensureUserIsAdmin } from "../middlewares/ensureUserIsAdmin.middleware";
-import { ensureUserIdExists } from "../middlewares/ensureUserIdExists";
+import { ensureUserIdExists } from "../middlewares/ensureUserIdExists.middleware";
 import { validateBody } from "../middlewares/validateBody.middleware";
 
 export const usersRoutes: Router = Router();
