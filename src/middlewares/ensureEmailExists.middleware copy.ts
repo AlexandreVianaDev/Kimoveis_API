@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { User } from "../entities";
 
-export const ensureEmailNotExists = async (
+export const ensureEmailExists = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -19,8 +19,8 @@ export const ensureEmailNotExists = async (
     },
   });
 
-  if (user && emailBody) {
-    throw new AppError("Email already exists", 409);
+  if (!user) {
+    throw new AppError("Invalid credentials", 401);
   }
 
   return next();
