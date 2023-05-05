@@ -3,7 +3,7 @@ import { z } from "zod";
 export const userSchema = z.object({
   id: z.number().int().positive(),
   name: z.string().max(45),
-  email: z.string().max(45),
+  email: z.string().max(45).email(),
   password: z.string().max(120),
   admin: z.boolean().optional(),
   createdAt: z.string(),
@@ -20,6 +20,11 @@ export const userCreateSchema = userSchema.omit({
   createdAt: true,
   updatedAt: true,
   deletedAt: true,
+});
+
+export const userLoginSchema = userCreateSchema.omit({
+  admin: true,
+  name: true,
 });
 
 export const userUpdateSchema = userCreateSchema
