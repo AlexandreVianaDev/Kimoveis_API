@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { validateBody } from "../middlewares/validateBody.middleware";
-import { loginUserController } from "../controllers/users.controllers";
 import { userLoginSchema } from "../schemas/users.schemas";
 import { ensureEmailExists } from "../middlewares/ensureEmailExists.middleware copy";
+import { loginUserController } from "../controllers/login.controllers";
 
 export const loginRoutes: Router = Router();
 
