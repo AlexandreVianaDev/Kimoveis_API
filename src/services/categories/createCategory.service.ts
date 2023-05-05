@@ -1,10 +1,10 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../data-source";
 import { Category } from "../../entities";
-import { TCategory } from "../../interfaces/categories.interfaces";
+import { TCategory, TCategoryCreate } from "../../interfaces/categories.interfaces";
 
 export const createCategoryService = async (
-  payload: TCategory
+  payload: TCategoryCreate
 ): Promise<TCategory> => {
   const categoriesRepo: Repository<Category> = AppDataSource.getRepository(Category);
 
