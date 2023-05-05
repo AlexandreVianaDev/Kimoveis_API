@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
-import { IToken, TUserWithoutPassword } from "../interfaces/users.interfaces";
+import { TUserWithoutPassword } from "../interfaces/users.interfaces";
 import { createUserService } from "../services/users/createUser.service";
-import { loginUserService } from "../services/users/loginUser.service";
+import { getUsersService } from "../services/users/getUsers.service";
+import { updateUserService } from "../services/users/updateUser.service";
+import { deleteUserService } from "../services/users/deleteUser.service";
 
 export const createUserController = async (
   req: Request,
@@ -11,10 +13,29 @@ export const createUserController = async (
   return res.status(201).json(user);
 };
 
-export const loginUserController = async (
+export const getUsersController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const token: IToken = await loginUserService(req.body);
-  return res.status(200).json(token);
+  const users: TUserWithoutPassword[] = await getUsersService();
+  return res.status(200).json(users);
+};
+
+export const updateUserController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const idParams = res.locals.id
+  const body = res.locals.body
+  const user: TUserWithoutPassword = await updateUserService(body, idParams);
+  return res.status(200).json(user);
+};
+
+export const deleteUserController = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const idParams = res.locals.id
+  await deleteUserService(idParams);
+  return res.status(204).send();
 };
