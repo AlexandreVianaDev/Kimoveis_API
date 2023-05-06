@@ -2,7 +2,6 @@ import { Router } from "express";
 import { ensureTokenIsValid } from "../middlewares/ensureTokenIsValid.middleware";
 import { ensureUserIsAdmin } from "../middlewares/ensureUserIsAdmin.middleware";
 import { validateBody } from "../middlewares/validateBody.middleware";
-import { categoryCreateSchema } from "../schemas/categories.schemas";
 import {
   createRealEstateController,
   getRealEstatesController,

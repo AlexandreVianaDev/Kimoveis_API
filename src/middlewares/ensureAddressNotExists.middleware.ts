@@ -15,11 +15,15 @@ export const ensureAddressNotExists = async (
   const addressesRepo: Repository<Address> =
     AppDataSource.getRepository(Address);
 
+  if (!addressBody.number) {
+    addressBody.number = "";
+  }
+
   const address: Address | null = await addressesRepo.findOne({
     where: {
       street: addressBody.street,
       zipCode: addressBody.zipCode,
-      //   number: addressBody.number,
+      number: addressBody.number,
       city: addressBody.city,
       state: addressBody.state,
     },

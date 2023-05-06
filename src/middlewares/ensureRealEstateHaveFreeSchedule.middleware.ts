@@ -18,13 +18,18 @@ export const ensureRealEstateHaveFreeScheduleExists = async (
 
   const userSchedules: Schedule | null = await schedulesRepo
     .createQueryBuilder("schedules")
-    .where("schedules.realEstateId = :realEstateId", { realEstateId: realEstateId })
+    .where("schedules.realEstateId = :realEstateId", {
+      realEstateId: realEstateId,
+    })
     .andWhere("schedules.date = :date", { date: date })
     .andWhere("schedules.hour = :hour", { hour: hour })
     .getOne();
 
   if (userSchedules) {
-    throw new AppError("Schedule to this real estate at this date and time already exists", 409);
+    throw new AppError(
+      "Schedule to this real estate at this date and time already exists",
+      409
+    );
   }
 
   return next();

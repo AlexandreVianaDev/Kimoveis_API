@@ -8,7 +8,7 @@ export const ensureIsWeekDay = (
 ): void => {
   const date: Date = new Date(req.body.date);
 
-  const dayOfWeek = date.getDay()
+  const dayOfWeek = date.getDay();
 
   if (dayOfWeek === 0 || dayOfWeek === 6) {
     throw new AppError("Invalid date, work days are monday to friday", 400);
@@ -16,6 +16,3 @@ export const ensureIsWeekDay = (
 
   return next();
 };
-
-
-// return {message: "Invalid date, work days are monday to friday"}

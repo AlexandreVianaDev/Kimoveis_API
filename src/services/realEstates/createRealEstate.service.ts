@@ -27,8 +27,6 @@ export const createRealEstateService = async (
     id: payload.categoryId,
   });
 
-  console.log(payload);
-
   const payloadWithAddressCreated = {
     ...payload,
     address: address,
@@ -40,11 +38,6 @@ export const createRealEstateService = async (
   );
 
   const realEstateSaved = await realEstateRepo.save(realEstate);
-
-  // const address: Address = addressRepo.create({
-  //   ...addressData,
-  //   realEstate: realEstate,
-  // });
 
   const realEstateComplete: RealEstate | null = await realEstateRepo
     .createQueryBuilder("realEstate")
