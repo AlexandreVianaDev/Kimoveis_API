@@ -25,9 +25,11 @@ export const updateUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const idParams = res.locals.userId;
-  const body = res.locals.body;
-  const user: TUserWithoutPassword = await updateUserService(body, idParams);
+  const idParams: number = res.locals.userId;
+  const user: TUserWithoutPassword = await updateUserService(
+    req.body,
+    idParams
+  );
   return res.status(200).json(user);
 };
 
@@ -35,7 +37,7 @@ export const deleteUserController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const idParams = res.locals.userId;
+  const idParams: number = res.locals.userId;
   await deleteUserService(idParams);
   return res.status(204).send();
 };

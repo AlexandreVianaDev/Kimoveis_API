@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 import { AppError } from "../error";
 
-export const ensureTokenIsValid = async (
+export const ensureTokenIsValidMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../error";
 
-export const ensureIsCommercialHour = (
+export const ensureIsCommercialHourMiddleware = (
   req: Request,
   res: Response,
   next: NextFunction

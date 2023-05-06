@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { Schedule } from "../entities";
 import { AppDataSource } from "../data-source";
 
-export const ensureUserHaveFreeScheduleExists = async (
+export const ensureUserHaveFreeScheduleExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction

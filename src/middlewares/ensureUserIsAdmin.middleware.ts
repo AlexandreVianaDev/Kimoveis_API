@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../error";
 
-export const ensureUserIsAdmin = async (
+export const ensureUserIsAdminMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction

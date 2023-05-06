@@ -7,9 +7,8 @@ export const createSchedulesController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const body = res.locals.body;
-  const tokenId = res.locals.tokenId;
-  const schedule: string = await createScheduleService(body, tokenId);
+  const tokenId: number = res.locals.tokenId;
+  const schedule: string = await createScheduleService(req.body, tokenId);
   return res.status(201).json({ message: schedule });
 };
 

@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Category } from "../entities";
 
-export const ensureCategoryNameNotExists = async (
+export const ensureCategoryNameNotExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction

@@ -7,8 +7,7 @@ export const createRealEstateController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const body = res.locals.body;
-  const realEstate = await createRealEstateService(body);
+  const realEstate: RealEstate | null = await createRealEstateService(req.body);
   return res.status(201).json(realEstate);
 };
 
