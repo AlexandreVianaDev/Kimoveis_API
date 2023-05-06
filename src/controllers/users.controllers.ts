@@ -1,8 +1,5 @@
 import { Request, Response } from "express";
-import {
-  TUserUpdate,
-  TUserWithoutPassword,
-} from "../interfaces/users.interfaces";
+import { TUserWithoutPassword } from "../interfaces/users.interfaces";
 import { createUserService } from "../services/users/createUser.service";
 import { getUsersService } from "../services/users/getUsers.service";
 import { updateUserService } from "../services/users/updateUser.service";
@@ -29,8 +26,10 @@ export const updateUserController = async (
   res: Response
 ): Promise<Response> => {
   const idParams: number = res.locals.userId;
-  const body: TUserUpdate = res.locals.body;
-  const user: TUserWithoutPassword = await updateUserService(body, idParams);
+  const user: TUserWithoutPassword = await updateUserService(
+    req.body,
+    idParams
+  );
   return res.status(200).json(user);
 };
 

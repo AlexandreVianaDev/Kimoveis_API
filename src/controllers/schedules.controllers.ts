@@ -2,15 +2,13 @@ import { Request, Response } from "express";
 import { RealEstate } from "../entities";
 import { createScheduleService } from "../services/schedules/createSchedules.service";
 import { getSchedulesService } from "../services/schedules/getSchedules.service";
-import { TScheduleCreate } from "../interfaces/schedules.interfaces";
 
 export const createSchedulesController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const body: TScheduleCreate = res.locals.body;
   const tokenId: number = res.locals.tokenId;
-  const schedule: string = await createScheduleService(body, tokenId);
+  const schedule: string = await createScheduleService(req.body, tokenId);
   return res.status(201).json({ message: schedule });
 };
 
