@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../error";
 
-export const ensureUserIsAdmin = async (
+export const ensureUserIsAdminMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -9,12 +9,12 @@ export const ensureUserIsAdmin = async (
   const admin: boolean = res.locals.admin;
   const id: number = res.locals.tokenId;
 
-  // if (!admin) {
-  //   throw new AppError("Insufficient permission", 403);
-  // }
-
   if (!admin) {
-    if (req.method === "GET" || req.method === "POST" || req.method === "DELETE") {
+    if (
+      req.method === "GET" ||
+      req.method === "POST" ||
+      req.method === "DELETE"
+    ) {
       throw new AppError("Insufficient permission", 403);
     }
 

@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { User } from "../entities";
 import { AppDataSource } from "../data-source";
 
-export const ensureUserIdExists = async (
+export const ensureUserIdExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction

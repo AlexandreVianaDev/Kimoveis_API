@@ -37,8 +37,8 @@ class User {
   @DeleteDateColumn({ type: "date", nullable: true })
   deletedAt: Date | string;
 
-  @OneToMany(() => Schedule, (schedule) => schedule.user)
-  schedule: Schedule[];
+  @OneToMany(() => Schedule, (schedules) => schedules.user)
+  schedules: Schedule[];
 
   @BeforeInsert()
   async hashPassword() {

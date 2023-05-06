@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import "express-async-errors";
 import express from "express";
-import { errorHandler } from "./middlewares/errorHandle.middleware";
+import { errorHandlerMiddleware } from "./middlewares/errorHandle.middleware";
 import { usersRoutes } from "./routers/users.routes";
 import { loginRoutes } from "./routers/login.routes";
 import { categoriesRoutes } from "./routers/categories.routes";
@@ -17,6 +17,6 @@ app.use("/categories", categoriesRoutes);
 app.use("/realEstate", realEstatesRoutes);
 app.use("/schedules", schedulesRoutes);
 
-app.use(errorHandler);
+app.use(errorHandlerMiddleware);
 
 export default app;

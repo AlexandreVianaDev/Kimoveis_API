@@ -4,14 +4,15 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { Category } from "../entities";
 
-export const ensureCategoryNameNotExists = async (
+export const ensureCategoryNameNotExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   const nameBody: string = req.body.name;
 
-  const categoriesRepo: Repository<Category> = AppDataSource.getRepository(Category);
+  const categoriesRepo: Repository<Category> =
+    AppDataSource.getRepository(Category);
 
   const user: Category | null = await categoriesRepo.findOne({
     where: {

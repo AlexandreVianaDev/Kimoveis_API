@@ -1,17 +1,18 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../error";
 import { Repository } from "typeorm";
-import { Category, User } from "../entities";
+import { Category } from "../entities";
 import { AppDataSource } from "../data-source";
 
-export const ensureCategoryIdExists = async (
+export const ensureCategoryIdExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   const idParams: number = parseInt(req.params.id);
 
-  const categoriesRepo: Repository<Category> = AppDataSource.getRepository(Category);
+  const categoriesRepo: Repository<Category> =
+    AppDataSource.getRepository(Category);
 
   const category: Category | null = await categoriesRepo.findOne({
     where: {

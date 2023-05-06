@@ -5,7 +5,7 @@ import { AppDataSource } from "../data-source";
 import { Address } from "../entities";
 import { TAddressCreate } from "../interfaces/addresses.interfaces";
 
-export const ensureAddressNotExists = async (
+export const ensureAddressNotExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -15,11 +15,15 @@ export const ensureAddressNotExists = async (
   const addressesRepo: Repository<Address> =
     AppDataSource.getRepository(Address);
 
+  if (!addressBody.number) {
+    addressBody.number = "";
+  }
+
   const address: Address | null = await addressesRepo.findOne({
     where: {
       street: addressBody.street,
       zipCode: addressBody.zipCode,
-      //   number: addressBody.number,
+      number: addressBody.number,
       city: addressBody.city,
       state: addressBody.state,
     },
