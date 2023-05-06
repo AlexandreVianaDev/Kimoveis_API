@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
 import { User } from "../entities";
 
-export const ensureEmailExists = async (
+export const ensureEmailExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction

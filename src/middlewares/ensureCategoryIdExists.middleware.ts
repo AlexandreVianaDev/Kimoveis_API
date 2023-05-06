@@ -4,7 +4,7 @@ import { Repository } from "typeorm";
 import { Category } from "../entities";
 import { AppDataSource } from "../data-source";
 
-export const ensureCategoryIdExists = async (
+export const ensureCategoryIdExistsMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
