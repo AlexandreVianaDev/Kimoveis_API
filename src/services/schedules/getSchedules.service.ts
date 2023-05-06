@@ -1,14 +1,23 @@
 import { Repository } from "typeorm";
-import { RealEstate, Schedule } from "../../entities";
+import { RealEstate } from "../../entities";
 import { AppDataSource } from "../../data-source";
 
-export const getSchedulesService = async (): Promise<Schedule[]> => {
-  const schedulesRepo: Repository<Schedule> = AppDataSource.getRepository(Schedule);
+export const getSchedulesService = async (
+  realEstateId: number
+): Promise<RealEstate | null> => {
+  const realEstateRepo: Repository<RealEstate> =
+    AppDataSource.getRepository(RealEstate);
 
-  const schedules: Schedule[] | null = await schedulesRepo
-  .createQueryBuilder("realEstate")
-  .leftJoinAndSelect("realEstate.address", "addresses")
-  .getMany();
+  const realEstate: RealEstate | null = await realEstateRepo
+    .createQueryBuilder("realEstate")
+    .where("realEstate.id = :realEstateId", {
+      realEstateId: realEstateId,
+    })
+    .leftJoinAndSelect("realEstate.address", "addresses")
+    .leftJoinAndSelect("realEstate.schedules", "schedules")
+    .leftJoinAndSelect("realEstate.category", "categories")
+    .leftJoinAndSelect("schedules.user", "user")
+    .getOne();
 
-  return schedules;
+  return realEstate;
 };

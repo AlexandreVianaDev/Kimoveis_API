@@ -5,7 +5,10 @@ import {
   getUsersController,
   updateUserController,
 } from "../controllers/users.controllers";
-import { userCreateSchema, userUpdateBodySchema } from "../schemas/users.schemas";
+import {
+  userCreateSchema,
+  userUpdateBodySchema,
+} from "../schemas/users.schemas";
 import { ensureEmailNotExists } from "../middlewares/ensureEmailNotExists.middleware";
 import { ensureTokenIsValid } from "../middlewares/ensureTokenIsValid.middleware";
 import { ensureUserIsAdmin } from "../middlewares/ensureUserIsAdmin.middleware";
@@ -32,6 +35,10 @@ usersRoutes.patch(
   updateUserController
 );
 
-usersRoutes.delete("/:id", ensureUserIdExists,
-ensureTokenIsValid,
-ensureUserIsAdmin, deleteUserController)
+usersRoutes.delete(
+  "/:id",
+  ensureUserIdExists,
+  ensureTokenIsValid,
+  ensureUserIsAdmin,
+  deleteUserController
+);

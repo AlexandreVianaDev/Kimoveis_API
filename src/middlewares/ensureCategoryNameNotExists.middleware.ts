@@ -11,7 +11,8 @@ export const ensureCategoryNameNotExists = async (
 ): Promise<void> => {
   const nameBody: string = req.body.name;
 
-  const categoriesRepo: Repository<Category> = AppDataSource.getRepository(Category);
+  const categoriesRepo: Repository<Category> =
+    AppDataSource.getRepository(Category);
 
   const user: Category | null = await categoriesRepo.findOne({
     where: {

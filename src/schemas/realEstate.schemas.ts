@@ -1,6 +1,5 @@
-import { nullable, z } from "zod";
+import { z } from "zod";
 import { addressCreateSchema, addressSchema } from "./addresses.schemas";
-import { Address } from "../entities";
 import { categorySchema } from "./categories.schemas";
 import { dateSchema } from "./users.schemas";
 
@@ -14,8 +13,6 @@ export const realEstateSchema = z.object({
   createdAt: dateSchema,
   updatedAt: dateSchema,
 });
-
-// export const realEstateListSchema = z.array(realEstateSchema);
 
 export const realEstateCreateSchema = realEstateSchema
   .omit({

@@ -36,6 +36,6 @@ schedulesRoutes.get(
   "/realEstate/:id",
   ensureTokenIsValid,
   ensureUserIsAdmin,
-  getRealEstatesController,
+  ensureRealEstateIdExists,
   getSchedulesController
 );

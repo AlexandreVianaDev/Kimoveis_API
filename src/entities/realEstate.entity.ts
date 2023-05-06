@@ -46,8 +46,8 @@ class RealEstate {
   @UpdateDateColumn({ type: "date" })
   updatedAt: Date | string;
 
-  @OneToMany(() => Schedule, (schedule) => schedule.realEstate)
-  schedule: Schedule[];
+  @OneToMany(() => Schedule, (schedules) => schedules.realEstate)
+  schedules: Schedule[];
 
   @ManyToOne(() => Category, (category) => category.realEstate)
   category: Category;

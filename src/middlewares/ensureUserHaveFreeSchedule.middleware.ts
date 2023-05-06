@@ -10,7 +10,6 @@ export const ensureUserHaveFreeScheduleExists = async (
   next: NextFunction
 ): Promise<void> => {
   const tokenId: number = res.locals.tokenId;
-  const realEstateId: number = req.body.realEstateId;
   const date: Date | string = req.body.date;
   const hour: Date | string = req.body.hour;
 
@@ -25,7 +24,10 @@ export const ensureUserHaveFreeScheduleExists = async (
     .getOne();
 
   if (userSchedules) {
-    throw new AppError("User schedule to this real estate at this date and time already exists", 409);
+    throw new AppError(
+      "User schedule to this real estate at this date and time already exists",
+      409
+    );
   }
 
   return next();
