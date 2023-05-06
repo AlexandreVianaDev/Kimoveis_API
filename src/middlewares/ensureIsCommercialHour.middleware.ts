@@ -6,7 +6,7 @@ export const ensureIsCommercialHour = (
   res: Response,
   next: NextFunction
 ): void => {
-  const hourBody: string = req.body.date
+  const hourBody: string = req.body.hour
   const hour: number  = parseInt(hourBody.substring(0, 2))
 
   if (hour < 8 || hour > 18) {

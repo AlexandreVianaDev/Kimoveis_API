@@ -9,7 +9,16 @@ export const ensureRealEstateIdExists = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  const realEstateId: number = parseInt(req.body.realEstateId);
+
+  let realEstateId: number = 0
+
+  if(req.method === "POST"){
+    realEstateId = parseInt(req.body.realEstateId);
+  }
+
+  if(req.method === "GET"){
+    realEstateId = parseInt(req.params.id);
+  }
 
   const realEstateRepo: Repository<RealEstate> = AppDataSource.getRepository(RealEstate);
 

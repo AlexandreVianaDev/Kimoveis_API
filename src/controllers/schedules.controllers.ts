@@ -8,14 +8,16 @@ export const createSchedulesController = async (
     res: Response
   ): Promise<Response> => {
     const body = res.locals.body
-    const schedule: void = await createScheduleService(body);
-    return res.status(201).json(schedule);
+    const tokenId = res.locals.tokenId
+    const schedule: string = await createScheduleService(body, tokenId);
+    return res.status(201).json({message: schedule});
   };
   
   export const getSchedulesController = async (
     req: Request,
     res: Response
   ): Promise<Response> => {
-    const schedules: Schedule[] = await getSchedulesService();
+    const realEstateId: number = res.locals.realEstateId
+    const schedules: Schedule[] = await getSchedulesService(realEstateId);
     return res.status(200).json(schedules);
   };
