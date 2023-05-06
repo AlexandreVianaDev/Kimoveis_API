@@ -7,15 +7,35 @@ import {
   createRealEstateController,
   getRealEstatesController,
 } from "../controllers/realEstate.controllers";
-import { ensureAddressNotExists } from "../middlewares/ensureAddressNotExists.middleware";
-import { realEstateCreateSchema } from "../schemas/realEstate.schemas";
+import { schedulesCreateSchema } from "../schemas/schedules.schemas";
+import {
+  createSchedulesController,
+  getSchedulesController,
+} from "../controllers/schedules.controllers";
+import { ensureUserHaveFreeScheduleExists } from "../middlewares/ensureUserHaveFreeSchedule.middleware";
+import { ensureRealEstateHaveFreeScheduleExists } from "../middlewares/ensureRealEstateHaveFreeSchedule.middleware";
+import { ensureIsWeekDay } from "../middlewares/ensureIsWeekDay.middleware";
+import { ensureRealEstateIdExists } from "../middlewares/ensureRealEstateIdExists.middleware";
+import { ensureIsCommercialHour } from "../middlewares/ensureIsCommercialHour.middleware";
 
 export const schedulesRoutes: Router = Router();
 
 schedulesRoutes.post(
   "",
   ensureTokenIsValid,
-//   validateBody(realEstateCreateSchema),
+  validateBody(schedulesCreateSchema),
+  ensureRealEstateIdExists,
+  ensureUserHaveFreeScheduleExists,
+  ensureRealEstateHaveFreeScheduleExists,
+  ensureIsWeekDay,
+  ensureIsCommercialHour,
+  createSchedulesController
 );
 
-schedulesRoutes.get("/realEstate/:id", ensureTokenIsValid, ensureUserIsAdmin, getRealEstatesController);
+schedulesRoutes.get(
+  "/realEstate/:id",
+  ensureTokenIsValid,
+  ensureUserIsAdmin,
+  getRealEstatesController,
+  getSchedulesController
+);
