@@ -29,7 +29,10 @@ export const loginUserService = async (
   const token: string = sign(
     { admin: user!.admin },
     String(process.env.SECRET_KEY),
-    { expiresIn: String(process.env.EXPIRES_IN), subject: String(user!.id) }
+    {
+      expiresIn: String(process.env.EXPIRES_IN || "24h"),
+      subject: String(user!.id),
+    }
   );
 
   return { token };
